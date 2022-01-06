@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<main class="container">
+  <div class="col-lg-12">
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Results</h1>
+          {% if res %}          
+          <table class="table table-hover mt-5">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">User</th>
+                <th scope="col">User Move</th>
+                <th scope="col">Bot Move</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for i in res %}
+              <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{i.player.name}}</td>
+                <td>{{i.user_move}}</td>
+                <td>{{i.bot_move}}</td>
+                <td>{{i.status}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+          <h4 class="fw-light">There's no result, please start a game</h4>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+{% endblock body %}

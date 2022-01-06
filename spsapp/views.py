@@ -3,7 +3,7 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-from spsapp.models import Player
+from spsapp.models import Player, Result
 
 # Python Import
 import random
@@ -11,6 +11,9 @@ import random
 # Create your views here.
 
 def home(request):
+    '''
+    homepage and start game logic
+    '''
     if request.method=='POST':
         playername = request.POST.get('name')
         if User.objects.filter(username__iexact=playername):
@@ -24,7 +27,10 @@ def home(request):
 
 
 def game(request):
-    gamelist = ['rock', 'paper', 'scissor']
+    '''
+    Rock, paper and scissor logic
+    '''
+    gamelist = ['rock', 'paper', 'scissors']
     bot_action = random.choice(gamelist)
     user = Player.objects.all().last()
 
@@ -32,25 +38,40 @@ def game(request):
         user_answer = request.POST.get('name')
 
         if user_answer == bot_action:
-            print(f"Both players selected {user_answer}. It's a tie!")
             messages.info(request, f"Both players selected {user_answer}. It's a tie!")
+            result = Result.objects.create(player=user, bot_move=bot_action, user_move=user_answer, status='Tie')
 
         elif user_answer == "rock":
             if bot_action == "scissors":
                 messages.success(request, "Rock smashes scissors! You win!")
+                result = Result.objects.create(player=user, bot_move=bot_action, user_move=user_answer, status='Win')
             else:
+                result = Result.objects.create(player=user, bot_move=bot_action, user_move=user_answer, status='Lose')
                 messages.info(request, "Paper covers rock! You lose.")
 
         elif user_answer == "paper":
             if bot_action == "rock":
                 messages.success(request, "Paper covers rock! You win!")
+                result = Result.objects.create(player=user, bot_move=bot_action, user_move=user_answer, status='Win')
             else:
+                result = Result.objects.create(player=user, bot_move=bot_action, user_move=user_answer, status='Lose')
                 messages.info(request, "Scissors cuts paper! You lose.")
 
         elif user_answer == "scissors":
             if bot_action == "paper":
+                result = Result.objects.create(player=user, bot_move=bot_action, user_move=user_answer, status='Win')
                 messages.success(request, "Scissors cuts paper! You win!")
             else:
+                result = Result.objects.create(player=user, bot_move=bot_action, user_move=user_answer, status='Lose')
                 messages.info(request, "Rock smashes scissors! You lose.")
     
     return render(request, 'game.html', {'user':user})
+
+
+def result(request):
+    '''
+    All users results
+    '''
+    res = Result.objects.all().order_by('-id')
+    context = {'res':res}
+    return render(request, 'result.html', context)

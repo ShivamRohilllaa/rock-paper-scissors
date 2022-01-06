@@ -19,8 +19,10 @@ class Result(models.Model):
     Result model in which all players result will be stored
     '''
     player = models.ForeignKey("Player", on_delete=models.CASCADE, related_name='score')
-    score = models.IntegerField()
+    bot_move = models.CharField(max_length=50, blank=True)
+    user_move = models.CharField(max_length=50, blank=True)
+    status = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
-        return 'score -- ' + self.score + ' by ' + self.player.name
+        return 'Status -- ' + self.status + ' ' + self.player.name
 
