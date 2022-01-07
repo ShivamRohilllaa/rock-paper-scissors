@@ -1,11 +1,19 @@
 # rock-paper-scissors
 
-#Rock Paper and Scissors Game -- Python and Django
+# Rock Paper and Scissors Game -- Python and Django
 
-![ScreenShot](/home/kiwitech/Downloads/Screenshot 2022-01-07 at 14-14-50 Rock, Paper Scissor.png))
+# Live Demo:- https://stonepsgame.herokuapp.com/ 
 
-![ScreenShot](/screenshots/latest.png)
+###### pip install -r requirements.txt
 
-![ScreenShot](/screenshots/latest.png)
+## Homepage
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/y5ntqhzchkgcaonp5byk.png)
 
-![ScreenShot](/screenshots/latest.png)
+## Start Game
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/fpu0jjhmbx6kafiduaz5.png)
+
+## Play Game
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/wv74ldkvg20aevbccxov.png)
+
+## Result
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xxip1o4fa6a79s8iwdk8.png)
