@@ -10,24 +10,30 @@
           <h1 class="fw-light">Hello {{user}}</h1>
           <form action='' method='post'>
             {% csrf_token %}
+          <div class="btn-group">
           <p class="mt-5">
-            <input type="submit" value="rock" class="btn btn-primary" name="name">
+            <input type="submit" value="rock" class="btn btn-primary mx-2" name="name">
           </p>
           <p class="mt-5">
-            <input type="submit" value="paper" class="btn btn-primary" name="name">
+            <input type="submit" value="paper" class="btn btn-primary mx-2" name="name">
           </p>
           <p class="mt-5">
-            <input type="submit" value="scissors" class="btn btn-primary" name="name">
+            <input type="submit" value="scissors" class="btn btn-primary mx-2" name="name">
           </p>
-        </form>
-          {% if messages %}
-            {% for message in messages %}
-            <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">
-              {{ message }}
-            </div>
-            {% endfor %}
-          {% endif %}
         </div>
+        </form>
+        {% if messages %}
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">
+          {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        <div class="btn-group">
+        <a href="{% url 'home' %}" class="btn btn-danger mt-5 mx-2"> End Game </a>
+        <a href="{% url 'result' %}" class="btn btn-danger mt-5 mx-2"> See Results </a>
+        </div>
+      </div>
       </div>
     </section>
   </div>
